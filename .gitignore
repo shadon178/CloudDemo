@@ -35,3 +35,5 @@ out/
 
 ### VS Code ###
 .vscode/
+/nacos-service/docker-compose/mysql/
+/nacos-service/docker-compose/standalone-logs/
