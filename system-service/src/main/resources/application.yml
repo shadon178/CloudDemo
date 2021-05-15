@@ -1,0 +1,28 @@
+server:
+  port: 17802
+
+spring:
+  application:
+    name: system-service
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url:
+    username: root
+    password: root
+    type:
+  cloud:
+    nacos:
+      config:
+        namespace: cloudservice
+        server-addr: 127.0.0.1:8848
+        file-extension: yml
+        group: cloudservice
+      discovery:
+        namespace: ${spring.cloud.nacos.config.namespace}
+        server-addr: ${spring.cloud.nacos.config.server-addr}
+        group: ${spring.cloud.nacos.config.group}
+
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml

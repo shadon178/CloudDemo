@@ -2,6 +2,7 @@ buildscript {
 	ext {
 		springBootVersion = '2.4.5'
 		alibabaCloud = '2021.1'
+		mybatisStarterVersion = '2.1.4'
 	}
 	repositories {
 		mavenCentral()
