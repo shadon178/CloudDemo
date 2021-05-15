@@ -1,41 +1,70 @@
-plugins {
-	id 'org.springframework.boot' version '2.4.5'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
-}
-
-group = 'io.shadon'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
-
-apply plugin: 'java'
-apply plugin: 'io.spring.dependency-management'
-
-repositories {
-	mavenCentral()
-	maven { url 'https://repo.spring.io/milestone' }
-}
-
-dependencies {
-	implementation 'org.flywaydb:flyway-core'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-aop'
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
-
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'mysql:mysql-connector-java'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
-dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:2020.0.0-RC1"
-		mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:2021.1"
+buildscript {
+	ext {
+		springBootVersion = '2.4.5'
+		alibabaCloud = '2021.1'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+	}
+	dependencies {
+		classpath "io.spring.gradle:dependency-management-plugin"
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
 	}
 }
 
-test {
-	useJUnitPlatform()
+allprojects {
+	group = 'io.shadon'
+	version = '0.0.1-SNAPSHOT'
+
+	apply plugin: 'java'
+	apply plugin: 'idea'
+	apply plugin: 'io.spring.dependency-management'
+	apply plugin: 'org.springframework.boot'
+
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+
+	repositories {
+		maven {
+			url 'https://maven.aliyun.com/repository/public/'
+		}
+		mavenLocal()
+		mavenCentral()
+	}
+
+	dependencies {
+		testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+		testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+	}
+
+	dependencyManagement {
+		imports {
+			mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+			mavenBom "org.springframework.cloud:spring-cloud-dependencies:2020.0.2"
+			mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${alibabaCloud}"
+		}
+	}
+
+	tasks.withType(JavaCompile) {
+		options.encoding("UTF-8")
+	}
 }
 
+subprojects {
+
+	dependencies {
+	}
+
+	apply plugin: 'io.spring.dependency-management'
+
+	dependencyManagement {
+	}
+	jar {
+		manifest.attributes provider: 'gradle'
+	}
+}
+
+bootJar {
+	enabled = false
+}
