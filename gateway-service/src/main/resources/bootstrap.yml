@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: gateway-service
+
+  cloud:
+    discovery:
+      client:
+        health-indicator:
+          enabled: true
+    nacos:
+      config:
+        namespace: cloudservice
+        server-addr: 172.0.0.1:8848
+        file-extension: yml
+        prefix: ${spring.application.name}
+      discovery:
+        namespace: ${spring.cloud.nacos.config.namespace}
+        server-addr: ${spring.cloud.nacos.config.server-addr}
+        service: ${spring.application.name}
