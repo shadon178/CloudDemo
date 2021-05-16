@@ -7,4 +7,5 @@ pluginManagement {
 rootProject.name = 'cloudservice'
 include 'gateway-service'
 include 'system-service'
+include 'service-api'
 

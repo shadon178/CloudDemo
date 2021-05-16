@@ -3,6 +3,10 @@ buildscript {
 		springBootVersion = '2.4.5'
 		alibabaCloud = '2021.1'
 		mybatisStarterVersion = '2.1.4'
+		mysqlDriverVersion = '5.1.49'
+		druidVersion = '1.2.6'
+		mybatisPlusVersion = '3.4.2'
+		swaggerVersion = '3.0.0'
 	}
 	repositories {
 		mavenCentral()
@@ -15,7 +19,7 @@ buildscript {
 }
 
 allprojects {
-	group = 'io.shadon'
+	group = 'io.shadon.cloudservice'
 	version = '0.0.1-SNAPSHOT'
 
 	apply plugin: 'java'
@@ -35,6 +39,9 @@ allprojects {
 	}
 
 	dependencies {
+		implementation 'io.springfox:springfox-swagger2:3.0.0'
+		implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+		compileOnly 'org.projectlombok:lombok:1.18.20'
 		testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
 		testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 	}

@@ -1,8 +1,12 @@
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
     implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisStarterVersion}"
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation "mysql:mysql-connector-java:${mysqlDriverVersion}"
+    implementation "com.alibaba:druid-spring-boot-starter:${druidVersion}"
+    implementation "com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}"
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
