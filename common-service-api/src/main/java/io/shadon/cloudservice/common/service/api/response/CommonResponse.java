@@ -7,7 +7,7 @@ import lombok.Data;
  * @author https://github.com/shadon178
  */
 @Data
-@Builder
+@Builder(toBuilder = true)
 public class CommonResponse<T> {
 
     private ResponseStatus status;
@@ -17,20 +17,5 @@ public class CommonResponse<T> {
     private String error;
 
     private T data;
-
-    public CommonResponse(ResponseStatus status, String message, String error, T data) {
-        this.status = status;
-        this.message = message;
-        this.error = error;
-        this.data = data;
-    }
-
-    public CommonResponse(T data) {
-        this(ResponseStatus.SUCC, null, null, data);
-    }
-
-    public CommonResponse() {
-        this(ResponseStatus.SUCC, null, null, null);
-    }
 
 }

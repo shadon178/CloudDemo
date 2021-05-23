@@ -1,14 +1,16 @@
 package io.shadon.cloudservice.system.controller;
 
+import io.shadon.cloudservice.common.service.api.response.CommonResponse;
+import io.shadon.cloudservice.system.api.dto.UserInfoDto;
 import io.shadon.cloudservice.system.entity.UserDO;
 import io.shadon.cloudservice.system.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import static io.shadon.cloudservice.system.api.constant.UserServiceUrlConstant.GET_ONE_BY_ACCOUNT;
 
 /**
  * @author https://github.com/shadon178
@@ -25,11 +27,15 @@ public class UserController {
     }
 
     @ApiOperation(value = "根据账号查询用户信息")
-    @PostMapping("")
+    @PostMapping(GET_ONE_BY_ACCOUNT)
     @ResponseBody
-    public void getOneByAccount(String account) {
+    public CommonResponse<UserInfoDto> getOneByAccount(
+            @ApiParam(name = "account", value = "用户账号", readOnly = true)
+            @PathVariable("account") String account) {
         UserDO userDO = userService.getOneByAccount(account);
-
+        UserInfoDto userInfoDto = userDO.toDto();
+        return CommonResponse.<UserInfoDto>builder()
+                .data(userInfoDto).build();
     }
 
 }

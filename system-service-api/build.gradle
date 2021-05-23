@@ -1,3 +1,4 @@
-group 'io.shadon.cloudservice'
-version '0.0.1-SNAPSHOT'
+dependencies {
+
+}
 
