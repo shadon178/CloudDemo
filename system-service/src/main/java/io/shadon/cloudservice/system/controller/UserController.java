@@ -27,7 +27,7 @@ public class UserController {
     }
 
     @ApiOperation(value = "根据账号查询用户信息")
-    @PostMapping(GET_ONE_BY_ACCOUNT)
+    @GetMapping(GET_ONE_BY_ACCOUNT)
     @ResponseBody
     public CommonResponse<UserInfoDto> getOneByAccount(
             @ApiParam(name = "account", value = "用户账号", readOnly = true)
@@ -35,7 +35,8 @@ public class UserController {
         UserDO userDO = userService.getOneByAccount(account);
         UserInfoDto userInfoDto = userDO.toDto();
         return CommonResponse.<UserInfoDto>builder()
-                .data(userInfoDto).build();
+                .data(userInfoDto)
+                .build();
     }
 
 }

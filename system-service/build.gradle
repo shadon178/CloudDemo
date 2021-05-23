@@ -7,8 +7,8 @@ dependencies {
     implementation "mysql:mysql-connector-java:${mysqlDriverVersion}"
     implementation "com.alibaba:druid-spring-boot-starter:${druidVersion}"
     implementation "com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}"
-    implementation "io.shadon.cloudservice:common-service-api"
-    implementation "io.shadon.cloudservice:system-service-api"
+    implementation project(":common-service-api")
+    implementation project(":system-service-api")
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

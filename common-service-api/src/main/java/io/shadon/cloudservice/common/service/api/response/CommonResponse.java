@@ -7,7 +7,7 @@ import lombok.Data;
  * @author https://github.com/shadon178
  */
 @Data
-@Builder(toBuilder = true)
+@Builder
 public class CommonResponse<T> {
 
     private ResponseStatus status;
