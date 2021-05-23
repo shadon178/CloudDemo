@@ -1,5 +1,6 @@
 package io.shadon.cloudservice.system.controller;
 
+import io.shadon.cloudservice.system.entity.UserDO;
 import io.shadon.cloudservice.system.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,6 +28,7 @@ public class UserController {
     @PostMapping("")
     @ResponseBody
     public void getOneByAccount(String account) {
+        UserDO userDO = userService.getOneByAccount(account);
 
     }
 
